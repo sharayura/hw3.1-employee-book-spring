@@ -4,9 +4,8 @@ import com.skypro.employee.model.Employee;
 import com.skypro.employee.record.EmployeeRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -31,6 +30,35 @@ public class EmployeeService {
                 .mapToInt(e -> e.getSalary())
                 .sum();
 
+    }
+
+    public List<Employee> getEmployeeSalaryMin() {
+        int minSalary = employees.values().stream()
+                .mapToInt(e -> e.getSalary())
+                .min().orElse(0);
+        return employees.values().stream()
+                .filter(e -> e.getSalary() == minSalary)
+                .collect(Collectors.toList());
+
+
+    }
+
+    public List<Employee> getEmployeeSalaryMax() {
+        int maxSalary = employees.values().stream()
+                .mapToInt(e -> e.getSalary())
+                .max().orElse(0);
+        return employees.values().stream()
+                .filter(e -> e.getSalary() == maxSalary)
+                .collect(Collectors.toList());
+    }
+
+    public List<Employee> getEmployeeSalaryAverage() {
+        double averageSalary = employees.values().stream()
+                .mapToInt(e -> e.getSalary())
+                .average().orElse(0);
+        return employees.values().stream()
+                .filter(e -> e.getSalary() > averageSalary)
+                .collect(Collectors.toList());
     }
 
 }
