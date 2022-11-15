@@ -32,24 +32,16 @@ public class EmployeeService {
 
     }
 
-    public List<Employee> getEmployeeSalaryMin() {
-        int minSalary = employees.values().stream()
-                .mapToInt(e -> e.getSalary())
-                .min().orElse(0);
+    public Employee getEmployeeSalaryMin() {
         return employees.values().stream()
-                .filter(e -> e.getSalary() == minSalary)
-                .collect(Collectors.toList());
-
-
+                .max(Comparator.comparingInt(Employee::getSalary))
+                .get();
     }
 
-    public List<Employee> getEmployeeSalaryMax() {
-        int maxSalary = employees.values().stream()
-                .mapToInt(e -> e.getSalary())
-                .max().orElse(0);
+    public Employee getEmployeeSalaryMax() {
         return employees.values().stream()
-                .filter(e -> e.getSalary() == maxSalary)
-                .collect(Collectors.toList());
+                .max(Comparator.comparingInt(Employee::getSalary))
+                .get();
     }
 
     public List<Employee> getEmployeeSalaryAverage() {

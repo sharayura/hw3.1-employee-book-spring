@@ -35,12 +35,12 @@ public class EmployeeController {
     }
 
     @GetMapping("employees/salary/min")
-    public List<Employee> getSalaryMin() {
+    public Employee getSalaryMin() {
         return employeeService.getEmployeeSalaryMin();
     }
 
     @GetMapping("employees/salary/max")
-    public List<Employee> getSalaryMax() {
+    public Employee getSalaryMax() {
         return employeeService.getEmployeeSalaryMax();
     }
 
