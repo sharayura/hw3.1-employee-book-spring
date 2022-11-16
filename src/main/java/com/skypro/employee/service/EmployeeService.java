@@ -35,13 +35,13 @@ public class EmployeeService {
     public Employee getEmployeeSalaryMin() {
         return employees.values().stream()
                 .max(Comparator.comparingInt(Employee::getSalary))
-                .get();
+                .orElseGet(() -> null);
     }
 
     public Employee getEmployeeSalaryMax() {
         return employees.values().stream()
                 .max(Comparator.comparingInt(Employee::getSalary))
-                .get();
+                .orElseGet(() -> null);
     }
 
     public List<Employee> getEmployeeSalaryAverage() {
