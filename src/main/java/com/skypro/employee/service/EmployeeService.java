@@ -3,7 +3,10 @@ package com.skypro.employee.service;
 import com.skypro.employee.model.Employee;
 import com.skypro.employee.record.EmployeeRequest;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,12 +19,12 @@ public class EmployeeService {
         return this.employees.values();
     }
 
-    public Employee addEmployee(EmployeeRequest employeeRequest) {
+    public Employee addEmployee(EmployeeRequest employeeRequest){
         if (StringUtils.isBlank(employeeRequest.getFirstName()) || StringUtils.isBlank(employeeRequest.getLastName())) {
-            throw new IllegalArgumentException("Заполните имя");
+           throw new BadRequestException(HttpStatus.BAD_REQUEST, "Имя не заполнено");
         }
         if (!StringUtils.isAlpha(employeeRequest.getFirstName()) || !StringUtils.isAlpha(employeeRequest.getLastName())) {
-            throw new IllegalArgumentException("Неверный формат имени");
+            throw new BadRequestException(HttpStatus.BAD_REQUEST, "Неверный формат имени");
         }
         employeeRequest.setFirstName(StringUtils.capitalize(employeeRequest.getFirstName()));
         employeeRequest.setLastName(StringUtils.capitalize(employeeRequest.getLastName()));
@@ -42,13 +45,13 @@ public class EmployeeService {
     public Employee getEmployeeSalaryMin() {
         return employees.values().stream()
                 .max(Comparator.comparingInt(Employee::getSalary))
-                .orElseGet(() -> null);
+                .orElseThrow(() -> new BadRequestException(HttpStatus.BAD_REQUEST, "Сотрудники не созданы"));
     }
 
     public Employee getEmployeeSalaryMax() {
         return employees.values().stream()
                 .max(Comparator.comparingInt(Employee::getSalary))
-                .orElseGet(() -> null);
+                .orElseThrow(() -> new BadRequestException(HttpStatus.BAD_REQUEST, "Сотрудники не созданы"));
     }
 
     public List<Employee> getEmployeeSalaryAverage() {
