@@ -5,8 +5,6 @@ import com.skypro.employee.record.EmployeeRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,6 +12,10 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeService {
     private final Map<Integer, Employee> employees = new HashMap<>();
+
+    public Map<Integer, Employee> getEmployees() {
+        return employees;
+    }
 
     public Collection<Employee> getAllEmployees() {
         return this.employees.values();
@@ -44,7 +46,7 @@ public class EmployeeService {
 
     public Employee getEmployeeSalaryMin() {
         return employees.values().stream()
-                .max(Comparator.comparingInt(Employee::getSalary))
+                .min(Comparator.comparingInt(Employee::getSalary))
                 .orElseThrow(() -> new BadRequestException(HttpStatus.BAD_REQUEST, "Сотрудники не созданы"));
     }
 

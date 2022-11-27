@@ -26,11 +26,6 @@ public class EmployeeController {
             return this.employeeService.addEmployee(employeeRequest);
     }
 
-    @RequestMapping("/add1")
-    public Employee add1(String first, String last) {
-        return this.employeeService.add1(first, last);
-    }
-
     @GetMapping("employees/salary/sum")
     public int getSalarySum() {
         return employeeService.getSalarySum();
