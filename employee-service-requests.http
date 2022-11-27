@@ -16,8 +16,8 @@ POST http://localhost:8080/employees
 Content-Type: application/json
 
 {
-  "firstName": "Test2",
-  "lastName": "Test2",
+  "firstName": "TestTwo",
+  "lastName": "TestTwo",
   "department": 2,
   "salary": 30000
 
@@ -27,9 +27,9 @@ POST http://localhost:8080/employees
 Content-Type: application/json
 
 {
-  "firstName": "Test3",
-  "lastName": "Test3",
-  "department": 5,
+  "firstName": "TestThree",
+  "lastName": "TestThree",
+  "department": 1,
   "salary": 76000
 
 }
@@ -38,8 +38,8 @@ POST http://localhost:8080/employees
 Content-Type: application/json
 
 {
-  "firstName": "Test",
-  "lastName": "Test",
+  "firstName": "TestFour",
+  "lastName": "TestFour",
   "department": 2,
   "salary": 65000
 
@@ -49,8 +49,8 @@ POST http://localhost:8080/employees
 Content-Type: application/json
 
 {
-  "firstName": "Test5",
-  "lastName": "Test5",
+  "firstName": "TestFive",
+  "lastName": "TestFive",
   "department": 3,
   "salary": 76000
 
