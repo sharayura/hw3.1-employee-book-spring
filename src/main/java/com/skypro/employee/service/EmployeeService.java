@@ -39,7 +39,7 @@ public class EmployeeService {
 
     public int getSalarySum() {
         return employees.values().stream()
-                .mapToInt(e -> e.getSalary())
+                .mapToInt(Employee::getSalary)
                 .sum();
 
     }
@@ -58,7 +58,7 @@ public class EmployeeService {
 
     public List<Employee> getEmployeeSalaryAverage() {
         double averageSalary = employees.values().stream()
-                .mapToInt(e -> e.getSalary())
+                .mapToInt(Employee::getSalary)
                 .average().orElse(0);
         return employees.values().stream()
                 .filter(e -> e.getSalary() > averageSalary)
