@@ -18,7 +18,7 @@ public class DepartmentService {
         this.employeeService = employeeService;
     }
 
-    public List<Employee> departmentEmployees(int departmentId) {
+    public List<Employee> getDepartmentEmployees(int departmentId) {
         return employeeService.getAllEmployees().stream()
                 .filter(e -> e.getDepartment() == departmentId)
                 .collect(Collectors.toList());
@@ -51,7 +51,7 @@ public class DepartmentService {
         Map<Integer, List<Employee>> groupedMap = new HashMap<>();
         for (Employee employee : employeeService.getEmployees().values()) {
             if (!groupedMap.containsKey(employee.getDepartment())) {
-                groupedMap.put(employee.getDepartment(), departmentEmployees(employee.getDepartment()));
+                groupedMap.put(employee.getDepartment(), getDepartmentEmployees(employee.getDepartment()));
             }
         }
         return groupedMap;

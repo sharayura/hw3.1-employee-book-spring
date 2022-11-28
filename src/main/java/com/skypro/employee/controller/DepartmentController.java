@@ -21,7 +21,7 @@ public class DepartmentController {
     }
     @GetMapping("/{id}/employees")
     public List<Employee> departmentEmployees(@PathVariable("id") int departmentId) {
-        return departmentService.departmentEmployees(departmentId);
+        return departmentService.getDepartmentEmployees(departmentId);
     }
 
     @GetMapping("/{id}/salary/sum")

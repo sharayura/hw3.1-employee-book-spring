@@ -21,9 +21,9 @@ public class EmployeeService {
         return this.employees.values();
     }
 
-    public Employee addEmployee(EmployeeRequest employeeRequest){
+    public Employee addEmployee(EmployeeRequest employeeRequest) {
         if (StringUtils.isBlank(employeeRequest.getFirstName()) || StringUtils.isBlank(employeeRequest.getLastName())) {
-           throw new BadRequestException(HttpStatus.BAD_REQUEST, "Имя не заполнено");
+            throw new BadRequestException(HttpStatus.BAD_REQUEST, "Имя не заполнено");
         }
         if (!StringUtils.isAlpha(employeeRequest.getFirstName()) || !StringUtils.isAlpha(employeeRequest.getLastName())) {
             throw new BadRequestException(HttpStatus.BAD_REQUEST, "Неверный формат имени");

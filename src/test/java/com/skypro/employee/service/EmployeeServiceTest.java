@@ -2,15 +2,12 @@ package com.skypro.employee.service;
 
 import com.skypro.employee.model.Employee;
 import com.skypro.employee.record.EmployeeRequest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EmployeeServiceTest {
 
     private EmployeeRequest employee1;
@@ -23,7 +20,7 @@ public class EmployeeServiceTest {
     private List<Employee> averageExpected;
 
 
-    @BeforeEach
+    @BeforeAll
     public void setup() {
         employee1 = new EmployeeRequest("TestOne", "TestOne", 1, 20000);
         employee2 = new EmployeeRequest("TestTwo", "TestTwo", 2, 40000);
