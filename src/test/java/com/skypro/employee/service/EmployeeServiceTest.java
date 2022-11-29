@@ -18,6 +18,7 @@ public class EmployeeServiceTest {
     private EmployeeRequest employeeFail;
     private EmployeeService employeeService;
     private List<Employee> averageExpected;
+    private EmployeeService employeeServiceNull;
 
 
     @BeforeAll
@@ -37,6 +38,8 @@ public class EmployeeServiceTest {
         employeeService.addEmployee(employee4);
         employeeService.addEmployee(employee5);
 
+        employeeServiceNull = new EmployeeService();
+
     }
 
     @Test
@@ -52,10 +55,12 @@ public class EmployeeServiceTest {
     @Test
     public void getEmployeeSalaryMinTest() {
         Assertions.assertEquals(employeeService.getEmployees().get(0), employeeService.getEmployeeSalaryMin());
+        Assertions.assertThrows(BadRequestException.class, () -> employeeServiceNull.getEmployeeSalaryMin());
     }
     @Test
     public void getEmployeeSalaryMaxTest() {
         Assertions.assertEquals(employeeService.getEmployees().get(3), employeeService.getEmployeeSalaryMax());
+        Assertions.assertThrows(BadRequestException.class, () -> employeeServiceNull.getEmployeeSalaryMax());
     }
 
     @Test
